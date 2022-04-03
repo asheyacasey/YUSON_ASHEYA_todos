@@ -37,7 +37,10 @@ class _InputWidgetState extends State<InputWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(current != null ? 'Edit Todo' : 'Add new Todo'),
+            Text(
+              current != null ? 'Edit Todo' : 'Add new Todo',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
             TextFormField(
               controller: _tCon,
               validator: (value) {
@@ -50,10 +53,10 @@ class _InputWidgetState extends State<InputWidget> {
             ElevatedButton(
               onPressed: (_formKey.currentState?.validate() ?? false)
                   ? () {
-                if (_formKey.currentState?.validate() ?? false) {
-                  Navigator.of(context).pop(Todo(details: _tCon.text));
-                }
-              }
+                      if (_formKey.currentState?.validate() ?? false) {
+                        Navigator.of(context).pop(Todo(details: _tCon.text));
+                      }
+                    }
                   : null,
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

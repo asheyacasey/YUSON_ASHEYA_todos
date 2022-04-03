@@ -61,7 +61,6 @@ class _TodoScreenState extends State<TodoScreen> {
                                 todo: todo,
                                 onTap: () {
                                   _todoController.toggleDone(todo);
-
                                 },
                                 onErase: () {
                                   _todoController.removeTodo(todo);
@@ -89,12 +88,11 @@ class _TodoScreenState extends State<TodoScreen> {
   showAddDialog(BuildContext context) async {
     Todo? result = await showDialog<Todo>(
         context: context,
-        //if you don't want issues on navigator.pop, rename the context in the builder to something other than context
         builder: (dContext) {
           return const Dialog(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(12.0),
+                Radius.circular(8.0),
               ),
             ),
             child: InputWidget(),
@@ -108,7 +106,6 @@ class _TodoScreenState extends State<TodoScreen> {
   showEditDialog(BuildContext context, Todo todo) async {
     Todo? result = await showDialog<Todo>(
         context: context,
-        //if you don't want issues on navigator.pop, rename the context in the builder to something other than context
         builder: (dContext) {
           return Dialog(
             shape: const RoundedRectangleBorder(

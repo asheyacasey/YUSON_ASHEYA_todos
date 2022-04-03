@@ -68,15 +68,12 @@ class TodoCard extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    Container(
-                    child: IconButton(
+                    IconButton(
                        padding: EdgeInsets.zero,
                      icon: const Icon(Icons.close),
                       iconSize: 20,
                        onPressed: onErase,
                      ),
-                   ),
                   ],
                 ),
 
