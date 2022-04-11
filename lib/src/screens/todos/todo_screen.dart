@@ -3,24 +3,41 @@ import 'package:my_todo_app/src/screens/todos/todo_model.dart';
 import 'package:my_todo_app/src/screens/todos/widgets/input_widget.dart';
 import 'package:my_todo_app/src/screens/todos/widgets/todo_card.dart';
 import 'package:my_todo_app/src/controllers/todo_controller.dart';
+import '../../controllers/auth_controller.dart';
 
 
 class TodoScreen extends StatefulWidget {
-  const TodoScreen({Key? key}) : super(key: key);
+  final AuthController auth;
+  const TodoScreen(this.auth, {Key? key}) : super(key: key);
 
   @override
   State<TodoScreen> createState() => _TodoScreenState();
 }
 
-class _TodoScreenState extends State<TodoScreen> {
-  final TodoController _todoController = TodoController();
-  final ScrollController _sc = ScrollController();
+class _TodoScreenState extends State<TodoScreen>{
 
+  late final TodoController _todoController;
+  final ScrollController _sc = ScrollController();
+  AuthController get _auth => widget.auth;
+
+
+  @override
+  void initState() {
+    _todoController = TodoController(_auth.currentUser!.username);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                _auth.logout();
+              },
+              icon: const Icon(Icons.logout))
+        ],
         centerTitle:true,
         title: const Text('Task Manager',
           style: TextStyle(fontWeight: FontWeight.bold, ),
